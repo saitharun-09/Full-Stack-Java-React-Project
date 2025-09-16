@@ -1,0 +1,70 @@
+.loginContainer{
+    flex-direction: column;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: gray;
+    width: 350px;
+    margin-top: 60px;
+    flex-grow: 1;
+    border-radius: 15px;
+    border: 1px solid grey;
+    height: 400px;
+}
+
+.signInH2{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 35px;
+}
+
+.signIns{
+    font-weight: bold;
+    margin-left: 75px;
+    margin-top: 20px;
+    font-size: small;
+    color: rgba(0, 0, 0, 0.842);
+}
+
+.signInInputs{
+    margin-left: 75px;
+    margin-right: 100px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    min-height: 30px;
+    min-width: 200px;
+}
+
+.logInBtn{
+    font-size: medium;
+    margin-top: 30px;
+    margin-left: 75px;
+    margin-right: 100px;
+    border-radius: 50px;
+    border: 1px solid grey;
+    min-height: 36px;
+    min-width: 200px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.signupBtn{
+    font-size: medium;
+    margin-top: 30px;
+    margin-left: 75px;
+    margin-right: 100px;
+    border-radius: 50px;
+    border: 1px solid grey;
+    min-height: 36px;
+    min-width: 200px;
+    background-color: rgb(38, 167, 164);
+    color: white;
+    cursor: pointer;
+}
+
+.signupBtn:hover{
+    background-color: white;
+    color: black;
+}

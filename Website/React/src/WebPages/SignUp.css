@@ -1,0 +1,58 @@
+.SignUpContainer{
+    flex-direction: column;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 350px;
+    margin-top: 60px;
+    flex-grow: 1;
+    border-radius: 15px;
+    border: 1px solid grey;
+    height: 470px;
+    box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.2);
+;
+}
+
+.signUpH2{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.headingName{
+    display: block;        
+    font-weight: bold;
+    margin-left: 75px;
+    font-size: small;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.842);
+}
+
+.inputFields{
+    margin-left: 75px;
+    margin-right: 100px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    min-height: 30px;
+    min-width: 200px;
+}
+
+.signUpBtn{
+    font-size: medium;
+    margin-top: 30px;
+    margin-left: 75px;
+    margin-right: 100px;
+    border-radius: 50px;
+    border: 1px solid grey;
+    min-height: 36px;
+    min-width: 200px;
+    background-color: rgb(225, 220, 220);
+    color: black;
+    cursor: pointer;
+}
+
+.signUpBtn:hover{
+    background-color: grey;
+}

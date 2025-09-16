@@ -7,12 +7,11 @@
 }
 
 .mainLogo{
-    height: 60px;
+    height: 50px;
     margin-right: 80px;
 }
 
 .inputField{
-    
     width: 600px;
     height: 40px;
     border-radius: 50px;
@@ -76,12 +75,12 @@
     background-color: lightgrey;
 }   
 
-.cardContainer{
-    margin-left: 100px;
-    margin-right: 100px;
+.cardContainer, .upComingContainer{
+    margin-left: 150px;
+    margin-right: 150px;
 }
 
-.moviesHeading{
+.moviesHeading, .upComingHeading{
     font-size: 22px;
     margin-top: 30px;      
 }
@@ -94,7 +93,11 @@
     width: 200px;
     text-align: start;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px 20px 30px 0;
+    margin: 10px 40px 30px 0;
+    white-space: nowrap;      
+    overflow: hidden;     
+    text-overflow: ellipsis; 
+    max-width: 100%;
 }
 
 .favBtn {
@@ -114,6 +117,11 @@
 
 .card:hover .favBtn {
     display: block;
+}
+
+.noFavPara{
+    margin-top: 150px;
+    text-align: center;
 }
 
 .posterDiv {
@@ -138,6 +146,11 @@
     font-size: 18px;
     font-weight: bold;
     margin: 10px 15px 5px 15px;
+    white-space: nowrap;       
+    overflow: hidden;         
+    text-overflow: ellipsis;
+    width: 100%;             
+    max-width: 180px;     
 }
 
 .movieGenre{
