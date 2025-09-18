@@ -93,7 +93,7 @@
     width: 200px;
     text-align: start;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px 40px 30px 0;
+    margin: 0 40px 30px 0;
     white-space: nowrap;      
     overflow: hidden;     
     text-overflow: ellipsis; 
@@ -145,7 +145,7 @@
 .movieName{
     font-size: 18px;
     font-weight: bold;
-    margin: 10px 15px 5px 15px;
+    margin: 10px 15px 5px 10px;
     white-space: nowrap;       
     overflow: hidden;         
     text-overflow: ellipsis;
@@ -156,12 +156,16 @@
 .movieGenre{
     font-size: 14px;
     color: grey;
-    margin: 0 15px 5px 15px;
+    margin: 0 15px 5px 10px;
+    white-space: nowrap;      
+    overflow: hidden;     
+    text-overflow: ellipsis; 
+    max-width: 100%;
 }
 
 .movieYear{
     font-size: 14px;
     color: grey;
-    margin: 0 15px 15px 15px;
+    margin: 0 15px 15px 10px;
     font-weight: bold;
 }

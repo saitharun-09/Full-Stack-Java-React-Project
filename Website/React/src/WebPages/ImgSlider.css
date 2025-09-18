@@ -1,14 +1,14 @@
 .imgSliderContainer{
     position: relative;
     width: 100%;
-    height: 350px;
+    height: 400px;
     margin-top: 20px;
     margin: 0 auto;
     overflow: hidden;
 }
 
 .sliderImg{
-    width: 100%;
+    width: 100vw;
     height: 100%;
     object-fit:none;
     transition: all 0.5s ease;
@@ -19,7 +19,7 @@
   top: 50%;
   transform: translateY(-50%);
   color: grey;
-  background-color: white;
+  background-color: transparent;
   border: none;
   padding: 8px 12px;
   cursor: pointer;
@@ -28,9 +28,9 @@
 }
 
 .prevBtn{
-  left: 58px;
+  left: 66px;
 }
 
 .nextBtn {
-  right: 58px;
+  right: 51px;
 }
