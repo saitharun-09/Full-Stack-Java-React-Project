@@ -8,18 +8,17 @@ import { useEffect, useState } from 'react';
 const API_KEY = "a5627a0a6e7111a4902132a7a87c6fcc";
 const BASE_URL = "https://api.themoviedb.org/3";
 
-function HomePage({ addToWishList, wishList }) {
+function HomePage({ addToWishList, wishList, getGenreNames }) {
   const [popularMovies, setPopularMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
-  const [genres, setGenres] = useState([]);
- // const [loading, setLoading] = useState([true]);
+  const [loading, setLoading] = useState([false]);
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
-      .then((response) => {
-        setPopularMovies(response.data.results);
-      })
-      .catch((err) => console.error("Error fetching popular movies:", err));
+    setLoading(true);
+      axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
+        .then(response => setPopularMovies(response.data.results))
+        .catch(error => console.error(error))
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -30,22 +29,6 @@ function HomePage({ addToWishList, wishList }) {
       .catch((err) => console.error("Error fetching top rated movies:", err));
   }, []);
 
-  useEffect(() => {
-    axios.get(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`)
-      .then((response) => setGenres(response.data.genres))
-      .catch((err) => console.error("Error fetching genres:", err));
-  }, []);
-
-    const getGenreNames = (ids) => {
-    return ids
-      .map((id) => {
-        const genre = genres.find((g) => g.id === id);
-        return genre ? genre.name : null;
-      })
-      .filter(Boolean)
-      .join(", ");
-  };
-
   return (
     <>
       <Header />
@@ -53,12 +36,14 @@ function HomePage({ addToWishList, wishList }) {
 
       <div className="cardContainer">
         <h3 className='moviesHeading'>Popular Movies</h3>
-        {popularMovies.map((movie) => {
+        {loading ? <p>Loading movies...</p> 
+        : popularMovies.map((movie) => {
           const isInWishlist = wishList.some((m) => m.id === movie.id);
 
           return (
             <Card
               key={movie.id}
+              id={movie.id}
               poster={movie.poster_path
                 ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                 : "https://via.placeholder.com/200x300?text=No+Image"}
@@ -74,12 +59,14 @@ function HomePage({ addToWishList, wishList }) {
 
       <div className="cardContainer">
         <h3 className='moviesHeading'>Top Rated Movies</h3>
-        {topRatedMovies.map((movie) => {
+        {loading ? <p>Loading movies...</p> 
+        : topRatedMovies.map((movie) => {
           const isInWishlist = wishList.some((m) => m.id === movie.id);
 
           return (
             <Card
               key={movie.id}
+              id={movie.id}
               poster={movie.poster_path
                 ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                 : "https://via.placeholder.com/200x300?text=No+Image"}

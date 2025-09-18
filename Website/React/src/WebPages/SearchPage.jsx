@@ -7,7 +7,7 @@ import { useSearchParams } from "react-router-dom";
 const API_KEY = "a5627a0a6e7111a4902132a7a87c6fcc";
 const BASE_URL = "https://api.themoviedb.org/3";
 
-function SearchPage({ addToWishList, wishList }) {
+function SearchPage({ addToWishList, wishList , getGenreNames}) {
   const [searchResults, setSearchResults] = useState([]);
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q");
@@ -34,11 +34,12 @@ function SearchPage({ addToWishList, wishList }) {
           return (
             <Card
               key={movie.id}
+              id={movie.id}
               poster={movie.poster_path
                 ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                 : "https://via.placeholder.com/200x300?text=No+Image"}
               name={movie.title}
-              genre={"-"}
+              genre={getGenreNames(movie.genre_ids)}
               year={movie.release_date ? movie.release_date.slice(0, 4) : "N/A"}
               isInWishlist={isInWishlist}
               onFavClick={() => addToWishList(movie)}

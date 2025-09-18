@@ -37,7 +37,6 @@ function Header() {
             <div className="evenTypes">
                 <button className='types'>Movies</button>
                 <button className='types'>Events</button>
-                <button className='types'>Concerts</button>
                 <button className='types'>F1 Races</button>
                 <button className='types'>Sports</button>
                 <button className='types'>#LiveNow</button>
