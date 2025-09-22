@@ -3,7 +3,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    background-color: gray;
+    background-color: grey;
     width: 350px;
     margin-top: 60px;
     flex-grow: 1;

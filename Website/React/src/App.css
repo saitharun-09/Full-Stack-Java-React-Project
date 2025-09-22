@@ -1,8 +1,13 @@
+body{
+    background-color: black;
+    color: white;
+}
+
 .Header{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightgrey;
+    background-color: black;
     padding: 10px 0;
 }
 
@@ -69,6 +74,8 @@
     cursor: pointer;
     width: 100vw;
     box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.048);
+    color: white;
 }
 
 .types:hover{

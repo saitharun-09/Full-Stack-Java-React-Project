@@ -6,6 +6,7 @@ function Profile() {
             <Header />
 
             <div className="profileInfo">
+                <button>Edit Profile</button>
                 <P>First Name : </P>
                 <p>Last Name :</p>
                 <p>Email :</p>
