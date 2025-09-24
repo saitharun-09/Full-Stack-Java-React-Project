@@ -5,6 +5,10 @@ import { useState } from "react";
 
 function Header() { 
   const [searchQuery, setSearchQuery] = useState("");
+
+  const token = localStorage.getItem("token");
+  const isLoggedIn = !!token;
+
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,8 +33,10 @@ function Header() {
                 <Link to="/wishlist">
                     <button className='wishList'>WishList</button>
                 </Link>
-                <Link to="/login" >
-                    <button className='AccBtn'>Account</button>
+                <Link to={isLoggedIn ? "/profile" : "/login"}>
+                    <button className='AccBtn'>
+                        {isLoggedIn ? "Profile" : "Account"}
+                    </button>
                 </Link>
             </div>
 

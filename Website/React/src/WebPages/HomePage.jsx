@@ -11,7 +11,7 @@ const BASE_URL = "https://api.themoviedb.org/3";
 function HomePage({ addToWishList, wishList, getGenreNames }) {
   const [popularMovies, setPopularMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
-  const [loading, setLoading] = useState([false]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
