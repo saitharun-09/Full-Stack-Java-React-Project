@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 const API_KEY = "a5627a0a6e7111a4902132a7a87c6fcc";
 const BASE_URL = "https://api.themoviedb.org/3";
 
-function HomePage({ addToWishList, wishList, getGenreNames }) {
+function HomePage({ addToWishList, removeFromWishList, wishList, getGenreNames }) {
   const [popularMovies, setPopularMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -44,6 +44,7 @@ function HomePage({ addToWishList, wishList, getGenreNames }) {
             <Card
               key={movie.id}
               id={movie.id}
+            //  movie={movie}
               poster={movie.poster_path
                 ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                 : "https://via.placeholder.com/200x300?text=No+Image"}
@@ -51,7 +52,9 @@ function HomePage({ addToWishList, wishList, getGenreNames }) {
               genre={getGenreNames(movie.genre_ids)}
               year={movie.release_date ? movie.release_date.slice(0, 4) : "N/A"}
               isInWishlist={isInWishlist}
-              onFavClick={() => addToWishList(movie)}
+              addToWishList={addToWishList}
+              removeFromWishList={removeFromWishList}
+              //onFavClick={() => addToWishList(movie)}
             />
           );
         })}
@@ -67,6 +70,7 @@ function HomePage({ addToWishList, wishList, getGenreNames }) {
             <Card
               key={movie.id}
               id={movie.id}
+            //  movie={movie}
               poster={movie.poster_path
                 ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                 : "https://via.placeholder.com/200x300?text=No+Image"}
@@ -74,7 +78,9 @@ function HomePage({ addToWishList, wishList, getGenreNames }) {
               genre={getGenreNames(movie.genre_ids)}
               year={movie.release_date ? movie.release_date.slice(0, 4) : "N/A"}
               isInWishlist={isInWishlist}
-              onFavClick={() => addToWishList(movie)}
+              addToWishList={addToWishList}
+              removeFromWishList={removeFromWishList}
+            //  onFavClick={() => addToWishList(movie)}
             />
           );
         })}

@@ -17,13 +17,15 @@ body{
 }
 
 .inputField{
-    width: 600px;
+    min-width: 300px;
+    max-width: 600px;
     height: 40px;
     border-radius: 50px;
     border: 1px solid grey;
     padding-left: 15px;
     font-size: 16px;
     margin-right: 10px;
+    flex-grow: 1;
 }
 
 .homeSearchBtn{

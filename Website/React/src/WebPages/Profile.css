@@ -1,7 +1,64 @@
+
 .profileInfo{
+    padding: 50px;
+    background-color: gray;
+    margin: 0 auto;
+    width: 350px;
+    margin-top: 60px;
+    flex-grow: 1;
+    border-radius: 15px;
+    border: 1px solid grey;
+    height: 400px;
+    color: black;
+}
+
+.headingAndBtn{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.profileDetailsh3{
 
 }
 
+.editProfileBtn{
+    background-color: transparent;
+    margin-left: 100px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
 .userDetails{
-    
+    padding: 0 0 0 40px;
+}
+
+.changePassBtn{
+    border-radius: 50px;
+    border: none;
+    display: block;
+    margin :auto;
+    margin-top: 35px;
+    cursor: pointer;
+    padding: 10px 30px;
+}
+
+.changePassBtn:hover {
+    background-color: black;
+    color: white;
+}
+
+.logoutBtn{
+    border-radius: 50px;
+    border: none;
+    margin :auto;
+    display: block;
+    margin-top: 35px;
+    cursor: pointer;
+    padding: 10px 65px;
+}
+
+.logoutBtn:hover {
+    background-color: red;
+    color: white;
 }

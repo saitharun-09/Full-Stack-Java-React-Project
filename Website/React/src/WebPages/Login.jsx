@@ -1,10 +1,11 @@
 import Header from './Header.jsx';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import '../App.css'
 import './Login.css'
 import axios from 'axios';
 
 function Login() {
+    const navigate = useNavigate();
     const handleLogin = async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -14,11 +15,11 @@ function Login() {
             const response = await axios.post("http://localhost:8085/api/account/login",{email,password});
 
             localStorage.setItem("token", response.data.token);
-            window.location.href = "/";
+            navigate ("/");
         } catch (error) { 
-            console.log("Login Failed",error);
+            console.error("Login Failed", error.response?.data || error.message);
+            alert("Login failed!");
         }
-
     };
 
     return(

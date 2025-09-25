@@ -20,8 +20,10 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token !== null) setIsAuthenticated(true);
-    if (token) fetchWishList(token);
+    if (token) {
+      fetchWishList(token);
+      setIsAuthenticated(true);
+    }
   },[])
 
   const fetchWishList = async (token) => {
@@ -29,12 +31,15 @@ function App() {
       const response = await axios.get("http://localhost:8085/api/wishlist/", {
         headers: { Authorization : `Bearer ${token}`},
       });
-      const fetchMovieDetails = await Promise.all(response.data.map(async(item) => {
+
+      const fetchMovieDetails = await Promise.all(response.data.map(async (item) => {
           const movieDetails = await axios.get(`${BASE_URL}/movie/${item.movieId}?api_key=${API_KEY}`);
           return movieDetails.data;
       }));
-      const uniqueMovies = Array.from(new Map(fetchMovieDetails.map((movie) => 
-        [movie.id = movie])).values());
+
+      const uniqueMovies = Array.from(new Map(fetchMovieDetails.map(
+        (movie) => [movie.id, movie])).values());
+
       setWishList(uniqueMovies);
     } catch (error) {
       console.log(error)
@@ -48,13 +53,13 @@ function App() {
         alert("Please Login to add Fav");
         return;
       }
-      if (wishList.some((m) => m.id === movie.id))
+      if (wishList.some((m) => m.id === movie.id)) return;
 
       await axios.post(`http://localhost:8085/api/wishlist/${movie.id}`,{},
         {headers : {Authorization: `Bearer ${token}`} }
-      ) ;
+      );
     } catch (error) {
-      console.log(error)
+      console.log("Error adding to wishlist: ",error)
     }
   }
 
@@ -66,8 +71,8 @@ function App() {
         return;
       }
       await axios.delete(`http://localhost:8085/api/wishlist/${movieId}`,{
-        headers:{Authorization:`Bearer ${token}`}
-      })
+        headers:{ Authorization:`Bearer ${token}`},
+      });
       setWishList((Prev) => Prev.filter((m) => m.id !== movieId))
     } catch (error) {
       console.log(error)
@@ -93,8 +98,7 @@ function App() {
       <Route path='/wishlist' element={
         <ProtectedRoute isAuthenticated={isAuthenticated}>
           <WishList wishList={wishList} removeFromWishList={removeFromWishList} getGenreNames={getGenreNames} />
-        </ProtectedRoute>
-      } />
+        </ProtectedRoute> } />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<SignUp />} />
       <Route path='/profile' element={
