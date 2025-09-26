@@ -41,11 +41,18 @@ function Header() {
             </div>
 
             <div className="evenTypes">
-                <button className='types'>Movies</button>
-                <button className='types'>Events</button>
-                <button className='types'>F1 Races</button>
-                <button className='types'>Sports</button>
-                <button className='types'>#LiveNow</button>
+                <Link to = "/">
+                    <button className='types'>Movies</button>
+                </Link>
+                <Link to = "/series">
+                    <button className='types'>Series</button>
+                </Link>
+                <Link to = "/f1">
+                    <button className='types'>F1 Races</button>
+                </Link>
+                <Link to = "/Nowplaying">
+                    <button className='types'>#NowPlaying</button>
+                </Link>
             </div>
         </>
     );

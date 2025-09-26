@@ -9,6 +9,9 @@ import Login from './WebPages/Login.jsx';
 import SignUp from './WebPages/SignUp.jsx';
 import Profile from './WebPages/Profile.jsx';
 import ProtectedRoute from './WebPages/ProtectedRoute.jsx';
+import NowPlaying from './WebPages/NowPlaying.jsx';
+import Series from './WebPages/Series.jsx';
+import F1 from './WebPages/F1.jsx';
 
 const API_KEY = "a5627a0a6e7111a4902132a7a87c6fcc";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -54,28 +57,33 @@ function App() {
         return;
       }
       if (wishList.some((m) => m.id === movie.id)) return;
+      
+      setWishList((prev) => [...prev, movie]);
 
       await axios.post(`http://localhost:8085/api/wishlist/${movie.id}`,{},
         {headers : {Authorization: `Bearer ${token}`} }
       );
     } catch (error) {
       console.log("Error adding to wishlist: ",error)
+      setWishList((prev) => prev.filter((m) => m.id !== movie.id));
     }
   }
 
   const removeFromWishList = async (movieId) => {
-    try {
       const token = localStorage.getItem("token");
       if (!token) {
         alert("Please Login First!");
         return;
       }
-      await axios.delete(`http://localhost:8085/api/wishlist/${movieId}`,{
-        headers:{ Authorization:`Bearer ${token}`},
-      });
-      setWishList((Prev) => Prev.filter((m) => m.id !== movieId))
-    } catch (error) {
-      console.log(error)
+      const prevWishList = [...wishList];
+      setWishList((prev) => prev.filter((m) => m.id !== movieId));
+      try {
+        await axios.delete(`http://localhost:8085/api/wishlist/${movieId}`,{
+          headers:{ Authorization:`Bearer ${token}`},
+        });
+      } catch (error) {
+          console.log(error)
+          setWishList(prevWishList);
     }
   }
 
@@ -97,15 +105,23 @@ function App() {
       <Route path='/movie/:id' element={<MovieDetailsPage addToWishList={addToWishList} removeFromWishList={removeFromWishList} wishList={wishList} getGenreNames={getGenreNames} />} />
       <Route path='/wishlist' element={
         <ProtectedRoute isAuthenticated={isAuthenticated}>
-          <WishList wishList={wishList} removeFromWishList={removeFromWishList} getGenreNames={getGenreNames} />
+          <WishList wishList={wishList} removeFromWishList={removeFromWishList} getGenreNames={getGenreNames}
+             isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         </ProtectedRoute> } />
-      <Route path='/login' element={<Login />} />
+      <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated}/>} />
       <Route path='/signup' element={<SignUp />} />
       <Route path='/profile' element={
         <ProtectedRoute isAuthenticated={isAuthenticated}>
-          <Profile />
+          <Profile isAuthenticated={isAuthenticated}
+                   setIsAuthenticated={setIsAuthenticated}
+                   setWishList={setWishList}/>
         </ProtectedRoute>
       } />
+      <Route path='/series' element={<Series wishList={wishList} addToWishList={addToWishList}
+          removeFromWishList={removeFromWishList} getGenreNames={getGenreNames}/>}/>
+      <Route path='/nowplaying' element={<NowPlaying wishList={wishList} addToWishList={addToWishList}
+          removeFromWishList={removeFromWishList} getGenreNames={getGenreNames}/>}/>
+      <Route path='/f1' element={<F1/>}/>
     </Routes>
   );
 }

@@ -4,13 +4,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import './Profile.css';
 
-function Profile() {
+function Profile({ setWishList, setIsAuthenticated }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("")
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem("token");
+        setWishList([]);
+        setIsAuthenticated(false);
         navigate("/login");
     };
     

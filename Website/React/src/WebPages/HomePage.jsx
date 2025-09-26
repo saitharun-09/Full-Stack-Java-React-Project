@@ -44,7 +44,7 @@ function HomePage({ addToWishList, removeFromWishList, wishList, getGenreNames }
             <Card
               key={movie.id}
               id={movie.id}
-            //  movie={movie}
+              movie={movie}
               poster={movie.poster_path
                 ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                 : "https://via.placeholder.com/200x300?text=No+Image"}
@@ -54,7 +54,6 @@ function HomePage({ addToWishList, removeFromWishList, wishList, getGenreNames }
               isInWishlist={isInWishlist}
               addToWishList={addToWishList}
               removeFromWishList={removeFromWishList}
-              //onFavClick={() => addToWishList(movie)}
             />
           );
         })}
@@ -70,7 +69,7 @@ function HomePage({ addToWishList, removeFromWishList, wishList, getGenreNames }
             <Card
               key={movie.id}
               id={movie.id}
-            //  movie={movie}
+              movie={movie}
               poster={movie.poster_path
                 ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                 : "https://via.placeholder.com/200x300?text=No+Image"}

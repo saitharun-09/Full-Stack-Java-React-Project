@@ -4,7 +4,7 @@ import '../App.css'
 import './Login.css'
 import axios from 'axios';
 
-function Login() {
+function Login({setIsAuthenticated}) {
     const navigate = useNavigate();
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -15,6 +15,7 @@ function Login() {
             const response = await axios.post("http://localhost:8085/api/account/login",{email,password});
 
             localStorage.setItem("token", response.data.token);
+            setIsAuthenticated(true);
             navigate ("/");
         } catch (error) { 
             console.error("Login Failed", error.response?.data || error.message);
