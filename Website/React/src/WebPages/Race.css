@@ -1,0 +1,63 @@
+.RaceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0 20px 20px 20px;
+  margin: 20px 50px 50px 87px;
+}
+
+.Racecard {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.f1Heading{
+    margin-left: 108px;
+}
+
+.RacecardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.Racecard:hover .RacecardImg {
+  transform: scale(1.15);
+}
+
+.RaceNum {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 4px 8px;
+}
+
+.Racename {
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 4px 8px;
+  margin-bottom: 0;
+}
+
+.RaceCountry {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+}

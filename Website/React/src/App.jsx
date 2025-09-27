@@ -12,6 +12,7 @@ import ProtectedRoute from './WebPages/ProtectedRoute.jsx';
 import NowPlaying from './WebPages/NowPlaying.jsx';
 import Series from './WebPages/Series.jsx';
 import F1 from './WebPages/F1.jsx';
+import TrackDetails from './WebPages/TrackDetails.jsx';
 
 const API_KEY = "a5627a0a6e7111a4902132a7a87c6fcc";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -122,6 +123,7 @@ function App() {
       <Route path='/nowplaying' element={<NowPlaying wishList={wishList} addToWishList={addToWishList}
           removeFromWishList={removeFromWishList} getGenreNames={getGenreNames}/>}/>
       <Route path='/f1' element={<F1/>}/>
+      <Route path="/track/:meetingKey" element={<TrackDetails />} />
     </Routes>
   );
 }

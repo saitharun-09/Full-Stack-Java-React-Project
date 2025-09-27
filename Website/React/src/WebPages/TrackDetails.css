@@ -1,0 +1,37 @@
+.track-details-container {
+  display: flex;
+  gap: 20px;
+  padding: 40px;
+}
+
+.track-image {
+  flex: 1;
+  height: 400px;
+  background: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.track-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ticket-btn {
+  padding: 10px 16px;
+  background-color: #e10600;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ticket-btn:hover {
+  background-color: #b80400;
+}
+
