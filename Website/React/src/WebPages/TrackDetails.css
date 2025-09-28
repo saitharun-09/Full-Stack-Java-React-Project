@@ -1,34 +1,69 @@
 .track-details-container {
   display: flex;
-  gap: 20px;
-  padding: 40px;
+  gap: 30px;
+  padding: 20px 50px 0px 50px;
+  background-color: black;
+  color:white;
+}
+
+.gp-full-name{
+  margin-left: 50px;
+  margin-bottom: 0;
+  font-size: 30px;
 }
 
 .track-image {
   flex: 1;
-  height: 400px;
+  min-height: 500px;
   background: #ddd;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
 }
 
 .track-info {
-  flex: 1;
-  display: flex;
   flex-direction: column;
-  gap: 12px;
+  flex: 1;
+}
+
+.gp-name{
+  font-size: 36px;
+  margin-bottom: 0;
+}
+
+.track-short-name{
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.gp-country{
+  margin-top: 0;
+}
+
+.laps{
+  margin-top: 30px;
+}
+
+.TicketsSection{
+  margin-top: 30px;
+  display: flex;
+}
+
+.tickets-Label-Name{
+  align-self: center;
+  margin-right: 10px;
 }
 
 .ticket-btn {
-  padding: 10px 16px;
+  margin-top:30px;
+  padding: 20px 40px;
   background-color: #e10600;
   color: white;
   font-weight: bold;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .ticket-btn:hover {

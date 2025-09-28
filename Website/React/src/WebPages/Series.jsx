@@ -61,6 +61,7 @@ function Series({ addToWishList, removeFromWishList, getGenreNames, wishList }) 
                 isInWishlist={isInWishlist}
                 addToWishList={addToWishList}
                 removeFromWishList={removeFromWishList}
+                type="tv"
               />
             );
           })
@@ -91,6 +92,7 @@ function Series({ addToWishList, removeFromWishList, getGenreNames, wishList }) 
                 isInWishlist={isInWishlist}
                 addToWishList={addToWishList}
                 removeFromWishList={removeFromWishList}
+                type="tv"
               />
             );
           })

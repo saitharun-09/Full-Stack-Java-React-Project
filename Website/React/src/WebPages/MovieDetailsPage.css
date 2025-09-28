@@ -1,22 +1,42 @@
-.containerDiv{
+.containerDiv {
     display: flex;
     height: 100%;
     background-color: rgba(211, 211, 211, 0.105);
+    position: relative;
 }
 
-.posterdiv{
+.containerDiv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 0;
+}
+
+.posterDetailsContent {
+    position: relative;
+    display: flex;
+    width: 100%;
+    z-index: 1;
+}
+
+.posterdiv {
     margin: 50px 50px 50px 100px;
     height: 450px;
     width: 370px;
     border-radius: 20px;
 }
 
-.posterImg{
+.posterImg {
     object-fit: fill;
     border-radius: 20px;
 }
 
-.detailsDiv{
+.detailsDiv {
     display: inline-block;
     min-width: 500px;
     width: 100%;
@@ -24,16 +44,16 @@
     margin-right: 100px;
 }
 
-.genreAndTime{
+.genreAndTime {
     display: flex;
 }
 
-.description{
+.description {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.wishListBtn, .playTrailerBtn, .watchNow{
+.wishListBtn, .playTrailerBtn, .watchNow {
     min-height: 30px;
     min-width: 100px;
     border-radius: 50px;
@@ -42,80 +62,75 @@
     border: 1px solid black;
 }
 
-.castContainer{
+.castContainer {
     height: 340px;
     max-height: 400px;
     background-color: rgba(0, 255, 255, 0.233);
     margin-bottom: 100px;
+    padding: 0 20px;
 }
 
-.castHeading{
+.castHeading {
     margin-top: 20px;
-}
-
-.trailerShow {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
-  margin-top: 250px;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-}
-
-.trailerShow iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 56.25%;
-}
-
-.castContainer {
-  margin: 30px 0;
-  padding: 0 20px;
-}
-
-.castContainer h3 {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .castScroll {
-  display: flex;
-  overflow-x: auto;
-  gap: 25px;
-  padding-bottom: 10px;
-  scroll-behavior: smooth;
+    display: flex;
+    overflow-x: auto;
+    gap: 25px;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
 }
 
 .castScroll::-webkit-scrollbar {
-  height: 8px;
+    height: 8px;
 }
+
 .castScroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
 }
 
 .castCard {
-  flex: 0 0 auto;
-  width: 150px;
-  text-align: center;
+    flex: 0 0 auto;
+    width: 150px;
+    text-align: center;
 }
 
 .castCard img {
-  width: 100%;
-  border-radius: 50px;
+    width: 100%;
+    border-radius: 50px;
 }
 
 .actorName {
-  font-weight: bold;
-  margin-top: 5px;
-  font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 14px;
 }
 
 .characterName {
-  font-size: 12px;
-  font-weight: bold;
-  color: grey;
+    font-size: 12px;
+    font-weight: bold;
+    color: grey;
+}
+
+.trailerShow {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    margin-top: 250px;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.trailerShow iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 }

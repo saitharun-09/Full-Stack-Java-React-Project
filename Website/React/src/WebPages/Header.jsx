@@ -27,7 +27,7 @@ function Header() {
                         type="text" 
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder='Search Movies, Events,  F1 Races...'/>
+                        placeholder='Search Movies, Series  F1 Races...'/>
                 <button className='homeSearchBtn' type="submit">S</button>
                 </form>
                 <Link to="/wishlist">

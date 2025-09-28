@@ -1,6 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect, Children } from 'react';
-import axios, { AxiosHeaders } from 'axios';
+import axios from 'axios';
 import HomePage from './WebPages/HomePage.jsx';
 import SearchPage from './WebPages/SearchPage.jsx';
 import MovieDetailsPage from './WebPages/MovieDetailsPage.jsx';
@@ -103,7 +103,12 @@ function App() {
     <Routes>
       <Route index element={<HomePage addToWishList={addToWishList} removeFromWishList={removeFromWishList} wishList={wishList} getGenreNames={getGenreNames} />} />
       <Route path='/search' element={<SearchPage addToWishList={addToWishList} removeFromWishList={removeFromWishList} wishList={wishList} getGenreNames={getGenreNames} />} />
-      <Route path='/movie/:id' element={<MovieDetailsPage addToWishList={addToWishList} removeFromWishList={removeFromWishList} wishList={wishList} getGenreNames={getGenreNames} />} />
+      <Route path="/tv/:id" element={<MovieDetailsPage type="tv"
+                                                       wishList={wishList}
+                                                       addToWishList={addToWishList}
+                                                       removeFromWishList={removeFromWishList}
+                                                       getGenreNames={getGenreNames} />} />
+      <Route path='/movie/:id' element={<MovieDetailsPage  type="movie" addToWishList={addToWishList} removeFromWishList={removeFromWishList} wishList={wishList} getGenreNames={getGenreNames} />} />
       <Route path='/wishlist' element={
         <ProtectedRoute isAuthenticated={isAuthenticated}>
           <WishList wishList={wishList} removeFromWishList={removeFromWishList} getGenreNames={getGenreNames}
@@ -116,12 +121,15 @@ function App() {
           <Profile isAuthenticated={isAuthenticated}
                    setIsAuthenticated={setIsAuthenticated}
                    setWishList={setWishList}/>
-        </ProtectedRoute>
-      } />
-      <Route path='/series' element={<Series wishList={wishList} addToWishList={addToWishList}
-          removeFromWishList={removeFromWishList} getGenreNames={getGenreNames}/>}/>
-      <Route path='/nowplaying' element={<NowPlaying wishList={wishList} addToWishList={addToWishList}
-          removeFromWishList={removeFromWishList} getGenreNames={getGenreNames}/>}/>
+        </ProtectedRoute>} />
+      <Route path='/series' element={<Series wishList={wishList} 
+                                             addToWishList={addToWishList}
+                                             removeFromWishList={removeFromWishList} 
+                                             getGenreNames={getGenreNames}/>}/>
+      <Route path='/nowplaying' element={<NowPlaying wishList={wishList} 
+                                                     addToWishList={addToWishList}
+                                                     removeFromWishList={removeFromWishList} 
+                                                     getGenreNames={getGenreNames}/>}/>
       <Route path='/f1' element={<F1/>}/>
       <Route path="/track/:meetingKey" element={<TrackDetails />} />
     </Routes>

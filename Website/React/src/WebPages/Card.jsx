@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 function Card({ movie, poster, name, genre, year, id, 
-    addToWishList, removeFromWishList, isInWishlist }) {
+    addToWishList, removeFromWishList, isInWishlist , type ="movie"}) {
   const navigate = useNavigate();
    const handleFavClick = () => {
     const token = localStorage.getItem("token");
@@ -22,7 +22,7 @@ function Card({ movie, poster, name, genre, year, id,
         {isInWishlist ? "★" : "☆"} </button>
       <div className="posterDiv">
         <img className="moviePoster" src={poster} alt={name} onClick={() => 
-            navigate(`/movie/${id}`)} /> 
+            navigate(`/${type}/${id}`)}  /> 
       </div>
       <h2 className="movieName">{name}</h2>
       <p className="movieGenre">{genre}</p>
