@@ -37,6 +37,11 @@ function Header() {
                     <button className='AccBtn'>
                         {isLoggedIn ? "Profile" : "Account"}
                     </button>
+                        <div class="dropdown-account">
+                            <button>Profile</button>
+                            <button>Payments</button>
+                            <button>Log Out</button>
+                        </div>
                 </Link>
             </div>
 
