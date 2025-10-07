@@ -25,8 +25,8 @@ function Card({ movie, poster, name, genre, year, id,
             navigate(`/${type}/${id}`)}  /> 
       </div>
       <h2 className="movieName">{name}</h2>
-      <p className="movieGenre">{genre}</p>
-      <p className="movieYear">{year}</p>
+      <p className="movieGenre">{genre || "N/A"}</p>
+      <p className="movieYear">{year || "N/A"}</p>
     </div>
   );
 }

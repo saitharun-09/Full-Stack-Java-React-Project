@@ -49,7 +49,7 @@ function HomePage({ addToWishList, removeFromWishList, wishList, getGenreNames }
                 ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                 : "https://via.placeholder.com/200x300?text=No+Image"}
               name={movie.title}
-              genre={getGenreNames(movie.genre_ids)}
+              genre={getGenreNames(movie.genre_ids) || "N/A"}
               year={movie.release_date ? movie.release_date.slice(0, 4) : "N/A"}
               isInWishlist={isInWishlist}
               addToWishList={addToWishList}
@@ -74,7 +74,7 @@ function HomePage({ addToWishList, removeFromWishList, wishList, getGenreNames }
                 ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                 : "https://via.placeholder.com/200x300?text=No+Image"}
               name={movie.title}
-              genre={getGenreNames(movie.genre_ids)}
+              genre={getGenreNames(movie.genre_ids) || "N/A"}
               year={movie.release_date ? movie.release_date.slice(0, 4) : "N/A"}
               isInWishlist={isInWishlist}
               addToWishList={addToWishList}

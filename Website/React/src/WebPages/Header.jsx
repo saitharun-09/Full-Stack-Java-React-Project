@@ -33,17 +33,23 @@ function Header() {
                 <Link to="/wishlist">
                     <button className='wishList'>WishList</button>
                 </Link>
-                <Link to={isLoggedIn ? "/profile" : "/login"}>
-                    <button className='AccBtn'>
-                        {isLoggedIn ? "Profile" : "Account"}
-                    </button>
-                        <div class="dropdown-account">
-                            <button>Profile</button>
-                            <button>Payments</button>
-                            <button>Log Out</button>
-                        </div>
+
+                {isLoggedIn ? (
+                <div className="dropdown">
+                    <button className="AccBtn">Profile</button>
+                    <div className="dropdown-content">
+                    <Link to="/profile">Profile</Link>
+                    <Link to="/payments">Payments</Link>
+                    <Link to="/logout">Logout</Link>
+                    </div>
+                </div>
+                ) : (
+                <Link to="/login">
+                    <button className="AccBtn">Login</button>
                 </Link>
+                )}
             </div>
+            
 
             <div className="evenTypes">
                 <Link to = "/">

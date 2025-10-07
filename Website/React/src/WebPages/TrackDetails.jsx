@@ -22,7 +22,9 @@ function TrackDetails() {
         <h2 className="gp-name">{meeting.meeting_name}</h2>
         <p className="track-short-name">{meeting.circuit_short_name}, {meeting.country_name}</p>
         <p className="laps">No. of Laps: 61</p>
-        <div className="TicketsSection">
+        
+        <div className="booking-section">
+          <div className="TicketsSection">
         <label className="tickets-Label-Name" htmlFor="NoOfTickets">Tickets:</label>
           <select id="NoOfTickets">
             <option value="1">1</option>
@@ -34,10 +36,9 @@ function TrackDetails() {
             <option value="7">7</option>
             <option value="8">8</option>
             <option value="9">9</option>
-            <option value="10">10</option>
           </select>
+        <p>Ticket Price : 50000/-</p>
         </div>
-        <div className="booking-section">
           <button className="ticket-btn">Book Tickets</button>
         </div>
       </div>

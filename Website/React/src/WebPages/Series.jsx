@@ -87,7 +87,7 @@ function Series({ addToWishList, removeFromWishList, getGenreNames, wishList }) 
                     : "https://via.placeholder.com/200x300?text=No+Image"
                 }
                 name={show.name}
-                genre={getGenreNames(show.genre_ids)}
+                genre={getGenreNames(show.genre_ids) || "N/A"}
                 year={ show.first_air_date ? show.first_air_date.slice(0, 4) : "N/A" }
                 isInWishlist={isInWishlist}
                 addToWishList={addToWishList}

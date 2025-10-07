@@ -64,7 +64,7 @@ function SearchPage({ addToWishList, removeFromWishList, wishList, getGenreNames
                 ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
                 : "https://via.placeholder.com/200x300?text=No+Image"}
               name={item.title || item.name}
-              genre={getGenreNames(item.genre_ids || item.genres?.map(g => g.id) || [])}
+              genre={getGenreNames(item.genre_ids || item.genres?.map(g => g.id) || [] ) || "N/A"}
               year={item.release_date?.slice(0, 4) || item.first_air_date?.slice(0, 4) || "N/A"}
               isInWishlist={isInWishlist}
               addToWishList={addToWishList}
