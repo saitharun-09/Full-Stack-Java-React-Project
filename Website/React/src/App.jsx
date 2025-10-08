@@ -13,6 +13,7 @@ import NowPlaying from './WebPages/NowPlaying.jsx';
 import Series from './WebPages/Series.jsx';
 import F1 from './WebPages/F1.jsx';
 import TrackDetails from './WebPages/TrackDetails.jsx';
+import Payments from './WebPages/Payments.jsx';
 
 const API_KEY = "a5627a0a6e7111a4902132a7a87c6fcc";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -132,6 +133,7 @@ function App() {
                                                      getGenreNames={getGenreNames}/>}/>
       <Route path='/f1' element={<F1/>}/>
       <Route path="/track/:meetingKey" element={<TrackDetails />} />
+      <Route path='/payments' element={<Payments />} />
     </Routes>
   );
 }
