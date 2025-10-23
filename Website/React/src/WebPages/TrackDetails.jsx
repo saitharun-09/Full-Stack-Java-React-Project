@@ -1,6 +1,8 @@
 import { useLocation } from "react-router-dom";
+import axios from 'axios';
 import "./TrackDetails.css";
 import Header from "./Header";
+
 
 function TrackDetails() {
   const location = useLocation();
@@ -8,6 +10,20 @@ function TrackDetails() {
   if (!meeting) {
     return <p>No data available</p>;
   }
+  const token = localStorage.getItem("token");
+  const handleBooking = async () => {
+    if(token){
+      try {
+        await axios.get("http://localhost:8080/api/payments/create-order", {
+          method: 'POST',
+          headers: { "Content-Type": "application/json"}
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
 
   return (
     <>
@@ -39,7 +55,7 @@ function TrackDetails() {
           </select>
         <p>Ticket Price : 50000/-</p>
         </div>
-          <button className="ticket-btn">Book Tickets</button>
+          <button className="ticket-btn" onClick={handleBooking}>Book Tickets</button>
         </div>
       </div>
     </div>
