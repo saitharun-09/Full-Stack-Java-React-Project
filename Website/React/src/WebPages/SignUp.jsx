@@ -17,7 +17,7 @@ function SignUp() {
         const password = e.target.password.value;
 
         try {
-            const response = await axios.post("http://localhost:8085/api/account/signup",
+            const response = await axios.post("http://localhost:8080/api/account/signup",
                     {firstName,lastName,email,password});
                 if ( response.status === 200) {
                     setSuccess(true)

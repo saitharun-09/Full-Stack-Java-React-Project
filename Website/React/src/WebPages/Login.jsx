@@ -12,7 +12,7 @@ function Login({setIsAuthenticated}) {
         const password = e.target.password.value;
 
         try {
-            const response = await axios.post("http://localhost:8085/api/account/login",{email,password});
+            const response = await axios.post("http://localhost:8080/api/account/login",{email,password});
 
             localStorage.setItem("token", response.data.token);
             setIsAuthenticated(true);
