@@ -8,7 +8,10 @@ function TrackDetails() {
   const location = useLocation();
   const { meeting } = location.state || {};
   const [noOfTickets, setNoOfTickets] = useState(1);
+  const [loading, setLoading] = useState(false);
+
   const token = localStorage.getItem("token");
+  const email = localStorage.getItem("email");
 
   if (!meeting) return <p>No data available</p>;
 
@@ -23,8 +26,15 @@ function TrackDetails() {
   };
 
   const handleBooking = async () => {
+    if (loading) return;
+    setLoading(true);
+
     const res = await loadRazorpayScript();
-    if (!res) return alert("Failed to load Razorpay SDK");
+    if (!res) {
+      alert("Failed to load Razorpay SDK");
+      setLoading(false);
+      return;
+    }
 
     try {
       const orderResponse = await axios.post(
@@ -41,26 +51,44 @@ function TrackDetails() {
         currency: orderData.currency,
         name: meeting.meeting_official_name,
         description: `${noOfTickets} ticket(s) for ${meeting.meeting_name}`,
+        prefill: { email: email },
         order_id: orderData.razorpayOrderId,
         handler: async (response) => {
-          const verifyResponse = await axios.post(
-            "http://localhost:8080/api/payments/verify",
-            {
-              razorpayOrderId: response.razorpay_order_id,
-              razorpayPaymentId: response.razorpay_payment_id,
-              razorpaySignature: response.razorpay_signature,
-            },
-            { headers: { "Content-Type": "application/json" } }
-          );
-          alert(verifyResponse.data.message);
+          try {
+            const verifyResponse = await axios.post(
+              "http://localhost:8080/api/payments/verify",
+              {
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              },
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+            alert(verifyResponse.data);
+          } catch (error) {
+            console.error("Verification failed:", error);
+            alert("Payment verification failed!");
+          }
         },
       };
 
       const rzp = new window.Razorpay(options);
+      rzp.on("payment.failed", function (response) {
+        alert("Payment failed or cancelled. Please try again.");
+        console.error(response.error);
+      });
+
       rzp.open();
     } catch (err) {
       console.error(err);
       alert("Failed to create order.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -95,9 +123,14 @@ function TrackDetails() {
                 ))}
               </select>
               <p>Ticket Price: ₹50,000</p>
+              <p>Total: ₹{noOfTickets * 50000}</p>
             </div>
-            <button className="ticket-btn" onClick={handleBooking}>
-              Book Tickets
+            <button
+              className="ticket-btn"
+              onClick={handleBooking}
+              disabled={loading}
+            >
+              {loading ? "Processing..." : "Book Tickets"}
             </button>
           </div>
         </div>

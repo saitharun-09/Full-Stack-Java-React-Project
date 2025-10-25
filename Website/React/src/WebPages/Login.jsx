@@ -15,6 +15,7 @@ function Login({setIsAuthenticated}) {
             const response = await axios.post("http://localhost:8080/api/account/login",{email,password});
 
             localStorage.setItem("token", response.data.token);
+            localStorage.setItem("email", email);
             setIsAuthenticated(true);
             navigate ("/");
         } catch (error) { 

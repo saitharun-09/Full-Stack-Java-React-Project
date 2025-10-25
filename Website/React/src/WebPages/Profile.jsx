@@ -24,7 +24,7 @@ function Profile({ setWishList, setIsAuthenticated }) {
                     navigate("/login");
                     return;
                 }
-                const response = await axios.get("http://localhost:8085/api/account/profile", {
+                const response = await axios.get("http://localhost:8080/api/account/profile", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setUser(response.data)

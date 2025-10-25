@@ -19,9 +19,16 @@ const API_KEY = "a5627a0a6e7111a4902132a7a87c6fcc";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 function App() {
-  const [wishList, setWishList] = useState([]);
   const [genres, setGenres] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [wishList, setWishList] = useState(() => {
+    const saved = localStorage.getItem("wishlist");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishList));
+  }, [wishList]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -34,20 +41,28 @@ function App() {
   const fetchWishList = async (token) => {
     try {
       const response = await axios.get("http://localhost:8085/api/wishlist/", {
-        headers: { Authorization : `Bearer ${token}`},
+        headers: { Authorization : `Bearer ${token}` },
       });
 
-      const fetchMovieDetails = await Promise.all(response.data.map(async (item) => {
-          const movieDetails = await axios.get(`${BASE_URL}/movie/${item.movieId}?api_key=${API_KEY}`);
+      const fetchMovieDetails = await Promise.all(
+        response.data.map(async (item) => {
+          const movieDetails = await axios.get(
+            `${BASE_URL}/movie/${item.movieId}?api_key=${API_KEY}`
+          );
           return movieDetails.data;
-      }));
+        })
+      );
 
-      const uniqueMovies = Array.from(new Map(fetchMovieDetails.map(
-        (movie) => [movie.id, movie])).values());
+      const uniqueMovies = Array.from(
+        new Map(fetchMovieDetails.map((movie) => [movie.id, movie])).values()
+      );
 
-      setWishList(uniqueMovies);
+      setWishList((prev) => {
+        const all = [...prev, ...uniqueMovies];
+        return Array.from(new Map(all.map((m) => [m.id, m])).values());
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -62,7 +77,7 @@ function App() {
       
       setWishList((prev) => [...prev, movie]);
 
-      await axios.post(`http://localhost:8085/api/wishlist/${movie.id}`,{},
+      await axios.post(`http://localhost:8080/api/wishlist/${movie.id}`,{},
         {headers : {Authorization: `Bearer ${token}`} }
       );
     } catch (error) {
@@ -80,7 +95,7 @@ function App() {
       const prevWishList = [...wishList];
       setWishList((prev) => prev.filter((m) => m.id !== movieId));
       try {
-        await axios.delete(`http://localhost:8085/api/wishlist/${movieId}`,{
+        await axios.delete(`http://localhost:8080/api/wishlist/${movieId}`,{
           headers:{ Authorization:`Bearer ${token}`},
         });
       } catch (error) {
@@ -134,6 +149,7 @@ function App() {
       <Route path='/f1' element={<F1/>}/>
       <Route path="/track/:meetingKey" element={<TrackDetails />} />
       <Route path='/payments' element={<Payments />} />
+    
     </Routes>
   );
 }
